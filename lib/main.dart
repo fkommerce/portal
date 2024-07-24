@@ -22,7 +22,7 @@ Future<void> _init() async {
   await _initFastCachedImageConfig();
   configEasyLoading();
   await initAppDatum();
-  await Future.delayed(const Duration(milliseconds: 5000));
+  await Future.delayed(const Duration(seconds: 2));
   FlutterNativeSplash.remove();
 }
 

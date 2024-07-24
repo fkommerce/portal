@@ -56,7 +56,21 @@ final lightTheme = ThemeData(
   visualDensity: VisualDensity.adaptivePlatformDensity,
   floatingActionButtonTheme: _floatingActionButtonTheme,
   iconTheme: const IconThemeData(color: _iconColorSecondary),
+  chipTheme: _chipTheme,
   primaryIconTheme: const IconThemeData(color: lightPrimaryColor),
+);
+
+final _chipTheme = ChipThemeData(
+  backgroundColor: Colors.white,
+  labelStyle: _textTheme.bodyMedium!.copyWith(
+    color: kPrimaryColor,
+    fontWeight: FontWeight.w600,
+  ),
+  padding: const EdgeInsets.symmetric(horizontal: 5),
+  shape: roundedRectangleBorder30,
+  side: const BorderSide(color: kPrimaryColor, width: 1.5),
+  labelPadding: const EdgeInsets.symmetric(horizontal: 5),
+  elevation: 0.0,
 );
 
 final _dividerTheme = DividerThemeData(

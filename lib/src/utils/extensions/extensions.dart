@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:beamer/beamer.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -8,6 +9,7 @@ import 'package:path/path.dart';
 
 import '../../db/paths.dart';
 import '../../router/custom_routes.dart';
+import '../logger/logger_helper.dart';
 
 part 'src/color.dart';
 part 'src/context.dart';

@@ -10,8 +10,10 @@ extension BuildContextExtension on BuildContext {
   TextTheme get text => theme.textTheme;
   ColorScheme get color => theme.colorScheme;
 
-  bool get isLightTheme => MediaQuery.platformBrightnessOf(this) == Brightness.light;
-  bool get isDarkTheme => MediaQuery.platformBrightnessOf(this) == Brightness.dark;
+  bool get isLightTheme =>
+      MediaQuery.platformBrightnessOf(this) == Brightness.light;
+  bool get isDarkTheme =>
+      MediaQuery.platformBrightnessOf(this) == Brightness.dark;
 
   Size get size => MediaQuery.sizeOf(this);
   EdgeInsets get padding => MediaQuery.viewPaddingOf(this);
@@ -88,4 +90,43 @@ extension NavigatorStateExtension on NavigatorState {
 
   Future<T?> pushNamedRemoveUntil<T>(String route) =>
       pushNamedAndRemoveUntil<T>(route, (_) => false);
+}
+
+extension BuildContextBeamerExtension on BuildContext {
+  BeamerDelegate get beamer => Beamer.of(this);
+
+  void beamPush(String uri) => Beamer.of(this).beamToNamed(uri);
+
+  void beamBack() => Beamer.of(this).beamBack();
+
+  void beamUpdate() => Beamer.of(this).update();
+
+  void beamDoubleBack() {
+    Beamer.of(this).beamBack();
+    Beamer.of(this).beamBack();
+  }
+
+  void beamPushReplacement(String uri) =>
+      Beamer.of(this).beamToReplacementNamed(uri);
+
+  void urlHistory() => log.i(
+      'Url History: ${Beamer.of(this).beamingHistory.map((e) => e.history.map((v) => v.routeInformation.uri)).toList()}');
+}
+
+extension BuildContextBeamerDelegateExtension on BeamerDelegate {
+  void beamPush(String uri) => beamToNamed(uri);
+
+  void beamBack() => beamBack();
+
+  void beamUpdate() => update();
+
+  void beamDoubleBack() {
+    beamBack();
+    beamBack();
+  }
+
+  void beamPushReplacement(String uri) => beamToReplacementNamed(uri);
+
+  void urlHistory() => log.i(
+      'Url History: ${beamingHistory.map((e) => e.history.map((v) => v.routeInformation.uri)).toList()}');
 }
