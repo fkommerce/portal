@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:portal/src/config/size.dart';
+import 'package:portal/src/shared/ksnackbar/ksnackbar.dart';
 import '../../config/constants.dart';
 
 import '../../shared/internet/view/internet.dart';
@@ -8,10 +10,20 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const InternetWidget(
+    return InternetWidget(
       child: Scaffold(
         body: Center(
-          child: Text(appName),
+          child: Column(
+            mainAxisAlignment: mainCenter,
+            children: [
+              ElevatedButton(
+                onPressed: () =>
+                    KSnackbar.showSnackBar(context, 'Hello, $appName!'),
+                child: const Text('Show'),
+              ),
+              const SizedBox(height: defaultPadding),
+            ],
+          ),
         ),
       ),
     );

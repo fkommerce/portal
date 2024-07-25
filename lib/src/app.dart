@@ -15,6 +15,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart'
 import 'package:flutter_riverpod/flutter_riverpod.dart'
     show ConsumerWidget, WidgetRef;
 import 'package:portal/src/modules/home/home.dart';
+import 'package:portal/src/shared/ksnackbar/ksnackbar.dart';
 
 import '../beamer.routes.dart';
 import 'config/constants.dart' show appName;
