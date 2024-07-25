@@ -8,6 +8,7 @@ import 'package:beamer/beamer.dart'
 import 'package:flutter/widgets.dart' show ValueKey;
 import 'package:portal/src/modules/home/home.dart';
 import 'package:portal/src/modules/register/register.dart';
+import 'package:portal/src/modules/settings/view/setting_view.dart';
 
 import 'app.routes.dart';
 import 'src/config/constants.dart';
@@ -32,6 +33,14 @@ final routerDelegate = BeamerDelegate(
           title: appName,
           type: BeamPageType.fadeTransition,
           child: HomeScreen(),
+        );
+      },
+      AppRoutes.settingsRoute: (_, __, ___) {
+        return const BeamPage(
+          key: ValueKey(AppRoutes.settingsRoute),
+          title: 'Settings - $appName',
+          type: BeamPageType.fadeTransition,
+          child: SettingsView(),
         );
       },
       AppRoutes.loginRoute: (_, __, ___) {

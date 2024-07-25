@@ -1,3 +1,4 @@
+import 'package:beamer/beamer.dart';
 import 'package:fast_cached_network_image/fast_cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -17,6 +18,7 @@ void main() async {
 Future<void> _init() async {
   FlutterNativeSplash.preserve(
       widgetsBinding: WidgetsFlutterBinding.ensureInitialized());
+  Beamer.setPathUrlStrategy();
   pt = PlatformInfo.getCurrentPlatformType();
   await openDB();
   await _initFastCachedImageConfig();

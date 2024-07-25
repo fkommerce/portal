@@ -127,7 +127,7 @@ final _darkInputDecorationTheme = InputDecorationTheme(
     borderSide: BorderSide.none,
   ),
   filled: true,
-  fillColor: _cardBackgroundColor,
+  fillColor: _backgroundColor.withOpacity(0.5),
   suffixIconColor: darkPrimaryColor,
   prefixIconColor: darkPrimaryColor,
   errorMaxLines: 3,

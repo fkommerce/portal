@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../shared/internet/view/internet.dart';
 
 import '../../../config/constants.dart';
 import 'advance/db_delete_tile.dart';
@@ -16,30 +17,32 @@ class SettingsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Settings'),
-        centerTitle: true,
-        elevation: 0.0,
-      ),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(6.0),
-          child: DefaultTabController(
-            length: 2,
-            child: NestedScrollView(
-              headerSliverBuilder: (_, __) => [
-                SliverToBoxAdapter(
-                  child: TabBar(
-                    tabAlignment: TabAlignment.start,
-                    splashBorderRadius: borderRadius30,
-                    isScrollable: true,
-                    physics: const BouncingScrollPhysics(),
-                    tabs: const [Tab(text: 'Basic'), Tab(text: 'Advanced')],
+    return InternetWidget(
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('Settings'),
+          centerTitle: true,
+          elevation: 0.0,
+        ),
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(6.0),
+            child: DefaultTabController(
+              length: 2,
+              child: NestedScrollView(
+                headerSliverBuilder: (_, __) => [
+                  SliverToBoxAdapter(
+                    child: TabBar(
+                      tabAlignment: TabAlignment.start,
+                      splashBorderRadius: borderRadius30,
+                      isScrollable: true,
+                      physics: const BouncingScrollPhysics(),
+                      tabs: const [Tab(text: 'Basic'), Tab(text: 'Advanced')],
+                    ),
                   ),
-                ),
-              ],
-              body: const TabBarView(children: [BasicPart(), AdvancePart()]),
+                ],
+                body: const TabBarView(children: [BasicPart(), AdvancePart()]),
+              ),
             ),
           ),
         ),

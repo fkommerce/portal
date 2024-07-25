@@ -2,13 +2,13 @@ import 'dart:math';
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import '../../config/constants.dart';
-import '../../config/size.dart';
-import '../../utils/extensions/extensions.dart';
-import '../../utils/themes/themes.dart';
 
 import '../../../app.routes.dart';
+import '../../config/constants.dart';
+import '../../config/size.dart';
 import '../../shared/internet/view/internet.dart';
+import '../../utils/extensions/extensions.dart';
+import '../../utils/themes/themes.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -17,6 +17,10 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return InternetWidget(
       child: Scaffold(
+        floatingActionButton: FloatingActionButton.small(
+          onPressed: () => context.beamPush(AppRoutes.settingsRoute),
+          child: const Icon(Icons.settings_outlined),
+        ),
         body: Center(
           child: Container(
             width: min(context.width, 600),
