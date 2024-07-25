@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
-import 'package:portal/src/utils/themes/themes.dart';
+import '../../../../utils/themes/themes.dart';
 
 import '../../../../config/constants.dart';
 import '../../../../localization/loalization.dart';

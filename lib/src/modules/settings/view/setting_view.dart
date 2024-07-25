@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:portal/src/utils/extensions/extensions.dart';
+import '../../../utils/extensions/extensions.dart';
 import '../../../shared/internet/view/internet.dart';
 
 import '../../../config/constants.dart';

@@ -12,7 +12,7 @@ import 'package:portal/src/modules/settings/view/setting_view.dart';
 
 import 'app.routes.dart';
 import 'src/config/constants.dart';
-import 'src/modules/login/login.dart';
+import 'src/modules/login/view/login.dart';
 import 'src/shared/page_not_found/page_not_found.dart';
 
 // TODO: temporary variable to check if user is logged in
