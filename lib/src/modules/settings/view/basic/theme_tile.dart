@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:portal/src/config/constants.dart';
 
 import '../../../../localization/loalization.dart';
 import '../../../../shared/animations_widget/animated_widget_shower.dart';
@@ -28,17 +29,35 @@ class ThemeTile extends ConsumerWidget {
         t.theme,
         style: const TextStyle(fontWeight: FontWeight.bold),
       ),
-      subtitle: Text(
-        theme == ThemeProfile.dark ? t.switchToLightTheme : t.switchToDarkTheme,
-        style: const TextStyle(fontWeight: FontWeight.bold),
-      ),
-      trailing: Switch(
-        value: theme == ThemeProfile.dark,
-        onChanged: (_) async => ref.read(themeProvider.notifier).changeTheme(
-              theme == ThemeProfile.dark
-                  ? ThemeProfile.light
-                  : ThemeProfile.dark,
-            ),
+      // subtitle: Text(
+      //   theme == ThemeProfile.dark ? t.switchToLightTheme : t.switchToDarkTheme,
+      // ),
+      // trailing: Switch(
+      //   value: theme == ThemeProfile.dark,
+      //   onChanged: (_) async => ref.read(themeProvider.notifier).changeTheme(
+      //         theme == ThemeProfile.dark
+      //             ? ThemeProfile.light
+      //             : ThemeProfile.dark,
+      //       ),
+      // ),
+      trailing: ToggleButtons(
+        borderRadius: borderRadius25,
+        constraints: const BoxConstraints(minWidth: 48.0, minHeight: 36.0),
+        isSelected: List.generate(
+          ThemeProfile.values.length,
+          (i) => ThemeProfile.values[i] == theme,
+        ),
+        selectedColor: context.theme.primaryColor,
+        onPressed: (i) async => ref
+            .read(themeProvider.notifier)
+            .changeTheme(ThemeProfile.values[i]),
+        children: List.generate(
+          ThemeProfile.values.length,
+          (i) => Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 6.0),
+            child: Text(ThemeProfile.values[i].label),
+          ),
+        ),
       ),
     );
   }

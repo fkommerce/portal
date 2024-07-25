@@ -18,7 +18,7 @@ class AboutTile extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final info = ref.watch(infoProvider).value;
-    final bn = info?.buildNumber == '0' ? '' : '(${info?.buildNumber})';
+    final bn = info?.buildNumber == '0' ? '' : ' (${info?.buildNumber})';
     return KListTile(
       leading: AnimatedWidgetShower(
         size: 30.0,
@@ -33,20 +33,20 @@ class AboutTile extends ConsumerWidget {
         style: const TextStyle(fontWeight: FontWeight.bold),
       ),
       subtitle: info == null ? null : Text('${t.appTitle} ${info.version}$bn'),
-      onTap: () => showInfoDialog(context),
+      onTap: () => showInfoDialog(context, '${info?.version}$bn'),
     );
   }
 }
 
-void showInfoDialog(BuildContext context) => showAboutDialog(
+void showInfoDialog(BuildContext context, String? version) => showAboutDialog(
       context: context,
       applicationName: appName,
-      applicationVersion: '1.0.0',
+      applicationVersion: version ?? '1.0.0',
       applicationLegalese: '© 2023 $appName. All rights reserved.',
       applicationIcon: Image.asset('assets/icons/splash-icon-384x384.png',
           height: 48, width: 48),
       children: const [
         Text(
-            '\nA simple app to manage your restaurant business developed by The Flutter Way.'),
+            '\nA complete F-commerce platform for shop owners,\noffering product sourcing, inventory management,\ncustomer management, accounting, and growth tools.'),
       ],
     );

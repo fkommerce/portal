@@ -9,6 +9,7 @@ import '../../../../shared/animations_widget/animated_popup.dart';
 import '../../../../shared/animations_widget/animated_widget_shower.dart';
 import '../../../../shared/k_list_tile.dart/k_list_tile.dart';
 import '../../../../utils/extensions/extensions.dart';
+import '../../../../utils/themes/themes.dart';
 import '../../provider/time_format_provider.dart';
 
 class TimeFormatTile extends StatelessWidget {
@@ -51,8 +52,10 @@ class TimeFormatTile extends StatelessWidget {
             final timeFormat = ref.watch(timeFormatProvider);
             return Text(
               DateFormat(timeFormat).format(DateTime.now()),
-              style:
-                  context.theme.textTheme.bodySmall!.copyWith(fontSize: 13.0),
+              style: context.theme.textTheme.bodySmall!.copyWith(
+                fontSize: 13.0,
+                color: black,
+              ),
             );
           },
         ),

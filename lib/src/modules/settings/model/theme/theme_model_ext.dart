@@ -4,13 +4,13 @@ extension ThemeProfileExtension on ThemeProfile {
   String get label {
     switch (this) {
       case ThemeProfile.system:
-        return 'System Default';
+        return 'System';
       case ThemeProfile.light:
         return 'Light';
       case ThemeProfile.dark:
         return 'Dark';
       default:
-        return 'System Default';
+        return 'System';
     }
   }
 

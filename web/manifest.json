@@ -1,12 +1,12 @@
 {
-    "name": "portal",
-    "short_name": "portal",
+    "name": "Fkommerce Portal",
+    "short_name": "Fkommerce Portal",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#ffffff",
     "theme_color": "#ffffff",
-    "description": "A new Flutter project.",
-    "orientation": "portrait-primary",
+    "description": "Fkommerce is a complete F-commerce platform for shop owners, offering product sourcing, inventory management, customer management, accounting, and growth tools.
+","orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
         {

@@ -8,6 +8,7 @@ import '../../../../shared/animations_widget/animated_popup.dart';
 import '../../../../shared/animations_widget/animated_widget_shower.dart';
 import '../../../../shared/k_list_tile.dart/k_list_tile.dart';
 import '../../../../utils/extensions/extensions.dart';
+import '../../../../utils/themes/themes.dart';
 import '../../model/locale/locale_model.dart';
 import '../../provider/locale_provider.dart';
 
@@ -32,10 +33,10 @@ class LocaleTile extends StatelessWidget {
       trailing: OutlinedButton.icon(
         style: OutlinedButton.styleFrom(minimumSize: const Size(50, 48)),
         onPressed: () async => await showDialog(
-            context: context,
-            barrierDismissible: false,
-            builder: (_) => const LocaleChangerPopup(),
-          ),
+          context: context,
+          barrierDismissible: false,
+          builder: (_) => const LocaleChangerPopup(),
+        ),
         label: Icon(
           Icons.arrow_forward_ios_rounded,
           size: 15.0,
@@ -46,8 +47,10 @@ class LocaleTile extends StatelessWidget {
             final locale = ref.watch(localeProvider);
             return Text(
               locale.label,
-              style:
-                  context.theme.textTheme.bodySmall!.copyWith(fontSize: 13.0),
+              style: context.theme.textTheme.bodySmall!.copyWith(
+                fontSize: 13.0,
+                color: black,
+              ),
             );
           },
         ),

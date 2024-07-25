@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portal/src/utils/extensions/extensions.dart';
 import '../../../shared/internet/view/internet.dart';
 
 import '../../../config/constants.dart';
@@ -20,6 +21,10 @@ class SettingsView extends StatelessWidget {
     return InternetWidget(
       child: Scaffold(
         appBar: AppBar(
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back),
+            onPressed: context.beamBack,
+          ),
           title: const Text('Settings'),
           centerTitle: true,
           elevation: 0.0,

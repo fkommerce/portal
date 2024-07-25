@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
+import 'package:portal/src/utils/themes/themes.dart';
 
 import '../../../../config/constants.dart';
 import '../../../../localization/loalization.dart';
@@ -44,7 +45,10 @@ class DateFormatTile extends StatelessWidget {
         icon: Consumer(builder: (_, ref, __) {
           return Text(
             DateFormat(ref.watch(dateFormatProvider)).format(DateTime.now()),
-            style: context.theme.textTheme.bodySmall!.copyWith(fontSize: 13.0),
+            style: context.theme.textTheme.bodySmall!.copyWith(
+              fontSize: 13.0,
+              color: black,
+            ),
           );
         }),
       ),
