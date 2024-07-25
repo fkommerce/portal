@@ -1,5 +1,7 @@
 name: portal
-description: "Fkommerce is a complete F-commerce platform for shop owners, offering product sourcing, inventory management, customer management, accounting, and growth tools."
+description: "Fkommerce is a complete F-commerce platform for shop owners,
+  offering product sourcing, inventory management, customer management,
+  accounting, and growth tools."
 
 # Prevent accidental publishing to pub.dev.
 publish_to: "none"
@@ -37,7 +39,11 @@ dependencies:
   image_cropper: ^7.1.0
   image_picker: ^1.1.2
   intl: ^0.19.0
-  intl_phone_field: ^3.2.0
+  # intl_phone_field: ^3.2.0
+  intl_phone_field:
+    git:
+      url: https://github.com/sabikrahat/intl_phone_field.git
+      ref: master
   logger: ^2.4.0
   package_info_plus: ^8.0.0
   path: ^1.9.0
@@ -79,6 +85,15 @@ flutter_native_splash:
   image_dark: "assets/icons/splash-icon-384x384.png"
   branding: "assets/icons/branding-512x80.png"
   branding_bottom_padding: 64
+  # android_12:
+  #   color: "#ffffff"
+  #   color_dark: "#000000"
+  #   image: "assets/icons/splash-icon-384x384.png"
+  #   image_dark: "assets/icons/splash-icon-384x384.png"
+  #   icon_background_color: "#ffffff"
+  #   icon_background_color_dark: "#000000"
+  #   branding: "assets/icons/branding-512x80.png"
+  #   branding_bottom_padding: 64
   android: true
   ios: true
   web: true
@@ -95,6 +110,7 @@ flutter:
     - assets/fonts/
     - assets/icons/
     - assets/images/
+    - assets/json/
     - assets/svgs/
     - assets/types/
 

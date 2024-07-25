@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:portal/src/config/constants.dart';
-import 'package:portal/src/utils/extensions/extensions.dart';
+
+import '../../config/constants.dart';
+import '../../utils/extensions/extensions.dart';
 
 class KSnackbar {
   static hideSnackBar(BuildContext context) =>

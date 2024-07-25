@@ -2,11 +2,11 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../../utils/logger/logger_helper.dart';
 
 import '../../../shared/show_toast/awsome_snackbar/awesome_snackbar.dart';
 import '../../../shared/show_toast/awsome_snackbar/show_awesome_snackbar.dart';
 import '../../../utils/extensions/extensions.dart';
+import '../../../utils/logger/logger_helper.dart';
 
 typedef LoginNotifier = AutoDisposeNotifierProvider<LoginProvider, void>;
 
@@ -18,7 +18,7 @@ class LoginProvider extends AutoDisposeNotifier<void> {
   final pwdCntrlr = TextEditingController();
   bool pwdObscure = true;
 
-  bool isSignInProcess = false;
+  bool isInProcess = false;
 
   @override
   void build() async {}
@@ -38,14 +38,14 @@ class LoginProvider extends AutoDisposeNotifier<void> {
 
   Future<void> submit(BuildContext context) async {
     if (!formKey.currentState!.validate()) return;
-    isSignInProcess = true;
+    isInProcess = true;
     ref.notifyListeners();
     //
     log.i('Email: ${emailCntrlr.text.trim()}');
     log.i('Password: ${pwdCntrlr.text.trim()}');
     //
     await Future.delayed(const Duration(seconds: 5));
-    isSignInProcess = false;
+    isInProcess = false;
     ref.notifyListeners();
   }
 }

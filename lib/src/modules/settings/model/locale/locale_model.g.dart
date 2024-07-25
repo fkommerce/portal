@@ -8,7 +8,7 @@ part of 'locale_model.dart';
 
 class LocaleProfileAdapter extends TypeAdapter<LocaleProfile> {
   @override
-  final int typeId = 0;
+  final int typeId = 1;
 
   @override
   LocaleProfile read(BinaryReader reader) {

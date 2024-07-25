@@ -4,7 +4,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import '../provider/login.dart';
 
 import '../../../../app.routes.dart';
 import '../../../config/constants.dart';
@@ -13,6 +12,7 @@ import '../../../shared/internet/view/internet.dart';
 import '../../../shared/keyboard_hide/keyboard_hide.dart';
 import '../../../utils/extensions/extensions.dart';
 import '../../../utils/themes/themes.dart';
+import '../provider/login.dart';
 import 'forget_password_popup.dart';
 
 class LoginScreen extends ConsumerWidget {
@@ -136,18 +136,18 @@ class LoginScreen extends ConsumerWidget {
                                   child: const Text('Forgot Password'),
                                 ),
                               ),
-                              const SizedBox(height: defaultPadding),
+                              const SizedBox(height: defaultPadding / 2),
                               Row(
                                 children: [
                                   const Expanded(child: SizedBox.shrink()),
                                   Expanded(
                                     flex: 3,
                                     child: ElevatedButton(
-                                      onPressed: notifier.isSignInProcess
+                                      onPressed: notifier.isInProcess
                                           ? null
                                           : () async =>
                                               await notifier.submit(context),
-                                      child: notifier.isSignInProcess
+                                      child: notifier.isInProcess
                                           ? SpinKitThreeBounce(
                                               color: context.theme.primaryColor,
                                               size: 19.0,

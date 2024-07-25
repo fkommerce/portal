@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
-import '../../../../utils/themes/themes.dart';
 
 import '../../../../config/constants.dart';
 import '../../../../localization/loalization.dart';
@@ -10,6 +9,7 @@ import '../../../../shared/animations_widget/animated_popup.dart';
 import '../../../../shared/animations_widget/animated_widget_shower.dart';
 import '../../../../shared/k_list_tile.dart/k_list_tile.dart';
 import '../../../../utils/extensions/extensions.dart';
+import '../../../../utils/themes/themes.dart';
 import '../../provider/date_format_provider.dart';
 
 class DateFormatTile extends StatelessWidget {

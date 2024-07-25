@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:portal/src/config/size.dart';
-import 'package:portal/src/shared/ksnackbar/ksnackbar.dart';
-import '../../config/constants.dart';
 
+import '../../config/constants.dart';
+import '../../config/size.dart';
 import '../../shared/internet/view/internet.dart';
+import '../../shared/ksnackbar/ksnackbar.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});

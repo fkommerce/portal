@@ -633,11 +633,12 @@ packages:
   intl_phone_field:
     dependency: "direct main"
     description:
-      name: intl_phone_field
-      sha256: "73819d3dfcb68d2c85663606f6842597c3ddf6688ac777f051b17814fe767bbf"
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.2.0"
+      path: "."
+      ref: master
+      resolved-ref: a09e1751850ed6db19c174290a044dc21e7f4636
+      url: "https://github.com/sabikrahat/intl_phone_field.git"
+    source: git
+    version: "4.0.0"
   io:
     dependency: transitive
     description:
