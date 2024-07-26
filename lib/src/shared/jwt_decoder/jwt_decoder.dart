@@ -8,7 +8,7 @@ class JwtDecoder {
   ///
   /// Throws [FormatException] if parameter is not a valid JWT token.
   static Map<String, dynamic> decode(String token) {
-    final splitToken = token.split("."); // Split the token by '.'
+    final splitToken = token.split('.'); // Split the token by '.'
     if (splitToken.length != 3) {
       throw const FormatException('Invalid token');
     }
@@ -71,7 +71,7 @@ class JwtDecoder {
     final decodedToken = decode(token);
 
     final issuedAtDate = DateTime.fromMillisecondsSinceEpoch(0)
-        .add(Duration(seconds: decodedToken["iat"]));
+        .add(Duration(seconds: decodedToken['iat']));
     return DateTime.now().difference(issuedAtDate);
   }
 

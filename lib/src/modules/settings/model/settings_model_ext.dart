@@ -12,6 +12,10 @@ extension SettingExtension on AppSettings {
     String? rememberPassword,
     DateTime? firstRunDateTime,
     bool? performanceOverlayEnable,
+    String? storeId,
+    String? managementId,
+    String? accessToken,
+    String? refreshToken,
   }) =>
       AppSettings()
         ..performanceOverlayEnable =
@@ -22,7 +26,11 @@ extension SettingExtension on AppSettings {
         ..fontFamily = fontFamily ?? this.fontFamily
         ..firstRun = firstRun ?? this.firstRun
         ..locale = locale ?? this.locale
-        ..theme = theme ?? this.theme;
+        ..theme = theme ?? this.theme
+        ..storeId = storeId ?? this.storeId
+        ..managementId = managementId ?? this.managementId
+        ..accessToken = accessToken ?? this.accessToken
+        ..refreshToken = refreshToken ?? this.refreshToken;
 
   DateFormat get getDateFormat => DateFormat(dateFormat);
 

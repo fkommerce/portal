@@ -36,23 +36,29 @@ class AppSettings extends HiveObject {
   @HiveField(7)
   LocaleProfile locale = LocaleProfile.english;
   @HiveField(8)
-  String? rememberEmail;
+  String? storeId;
   @HiveField(9)
-  String? rememberPassword;
+  String? managementId;
+  @HiveField(10)
+  String? accessToken;
+  @HiveField(11)
+  String? refreshToken;
 
   String toRawJson() => json.encode(toJson());
 
   Map<String, dynamic> toJson() => {
         'firstRunDateTime': firstRunDateTime.toIso8601String(),
         'performanceOverlayEnable': performanceOverlayEnable,
-        'rememberPassword': rememberPassword,
-        'rememberEmail': rememberEmail,
         'dateFormat': dateFormat,
         'timeFormat': timeFormat,
         'fontFamily': fontFamily,
         'locale': locale.name,
         'firstRun': firstRun,
         'theme': theme.label,
+        'storeId': storeId,
+        'managementId': managementId,
+        'refreshToken': refreshToken,
+        'accessToken': accessToken,
       };
 
   factory AppSettings.fromJson(String source) =>
@@ -61,8 +67,6 @@ class AppSettings extends HiveObject {
   factory AppSettings.fromRawJson(Map<String, dynamic> json) => AppSettings()
     ..firstRunDateTime = DateTime.parse(json['firstRunDateTime'] as String)
     ..performanceOverlayEnable = json['performanceOverlayEnable'] as bool
-    ..rememberPassword = json['rememberPassword'] as String?
-    ..rememberEmail = json['rememberEmail'] as String?
     ..locale = LocaleProfile.values.firstWhere(
         (e) => e.name == json['locale'] as String,
         orElse: () => LocaleProfile.english)
@@ -72,7 +76,11 @@ class AppSettings extends HiveObject {
     ..dateFormat = json['dateFormat'] as String
     ..timeFormat = json['timeFormat'] as String
     ..fontFamily = json['fontFamily'] as String
-    ..firstRun = json['firstRun'] as bool;
+    ..firstRun = json['firstRun'] as bool
+    ..storeId = json['storeId'] as String?
+    ..managementId = json['managementId'] as String?
+    ..refreshToken = json['refreshToken'] as String?
+    ..accessToken = json['accessToken'] as String?;
 
   @override
   String toString() => toRawJson();

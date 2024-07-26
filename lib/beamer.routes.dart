@@ -6,6 +6,7 @@ import 'package:beamer/beamer.dart'
         BeamerDelegate,
         RoutesLocationBuilder;
 import 'package:flutter/widgets.dart' show ValueKey;
+import 'package:portal/src/db/init.dart';
 import 'package:portal/src/modules/home/home.dart';
 import 'package:portal/src/modules/register/view/register.dart';
 import 'package:portal/src/modules/settings/view/setting_view.dart';
@@ -14,9 +15,6 @@ import 'app.routes.dart';
 import 'src/config/constants.dart';
 import 'src/modules/login/view/login.dart';
 import 'src/shared/page_not_found/page_not_found.dart';
-
-// TODO: temporary variable to check if user is logged in
-bool isLoggedIn = false;
 
 final routerDelegate = BeamerDelegate(
   initialPath: AppRoutes.homeRoute,
@@ -64,12 +62,12 @@ final routerDelegate = BeamerDelegate(
   guards: [
     BeamGuard(
       pathPatterns: AppRoutes.allAuthRequiredRoutes,
-      check: (_, __) => isLoggedIn,
+      check: (_, __) => appSettings.managementId != null,
       beamToNamed: (_, __, ___) => AppRoutes.loginRoute,
     ),
     BeamGuard(
       pathPatterns: [AppRoutes.loginRoute, AppRoutes.registerRoute],
-      check: (_, __) => !isLoggedIn,
+      check: (_, __) => appSettings.managementId == null,
       beamToNamed: (_, __, ___) => AppRoutes.homeRoute,
     ),
   ],

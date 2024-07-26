@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl_phone_field/countries.dart';
 import 'package:intl_phone_field/phone_number.dart';
+import '../api/store_create.dart';
 
 import '../../../shared/ksnackbar/ksnackbar.dart';
 import '../../../shared/show_toast/awsome_snackbar/awesome_snackbar.dart';
@@ -81,6 +82,10 @@ class RegisterProvider extends AutoDisposeAsyncNotifier<void> {
       KSnackbar.showSnackBar(context, 'Country Code is required');
       return;
     }
+    if (country?.currencyName == null || country?.currencySymbol == null) {
+      KSnackbar.showSnackBar(context, 'Currency not found of the country.');
+      return;
+    }
     if (phoneNumber == null || (phoneNumber?.number.isNullOrEmpty ?? true)) {
       KSnackbar.showSnackBar(context, 'Phone number is required');
       return;
@@ -100,13 +105,18 @@ class RegisterProvider extends AutoDisposeAsyncNotifier<void> {
       log.i('Currency Name: ${country?.currencyName}');
       log.i('Currency Symbol: ${country?.currencySymbol}');
       //
-      await Future.delayed(const Duration(seconds: 5));
+      final res = await createStoreApi(context, this);
+      if (!res) {
+        isInProcess = false;
+        ref.notifyListeners();
+        return;
+      }
       //
       isInProcess = false;
       ref.notifyListeners();
       if (!context.mounted) return;
       context.beamUpdate();
-      // clear();
+      clear();
     } catch (e) {
       isInProcess = false;
       ref.notifyListeners();
