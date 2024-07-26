@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import '../../../utils/extensions/extensions.dart';
 
 import '../../../config/constants.dart';
 import '../../../shared/animations_widget/animated_popup.dart';
 import '../../../shared/show_toast/awsome_snackbar/awesome_snackbar.dart';
 import '../../../shared/show_toast/awsome_snackbar/show_awesome_snackbar.dart';
+import '../../../utils/extensions/extensions.dart';
 
 class ForgetPasswordPopup extends StatefulWidget {
   const ForgetPasswordPopup({super.key});

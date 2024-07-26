@@ -7,6 +7,7 @@ import 'package:intl_phone_field/intl_phone_field.dart';
 import '../../../../../app.routes.dart';
 import '../../../../config/constants.dart';
 import '../../../../config/size.dart';
+import '../../../../shared/animations_widget/animated_widget_shower.dart';
 import '../../../../shared/keyboard_hide/keyboard_hide.dart';
 import '../../../../utils/extensions/extensions.dart';
 import '../../provider/register.dart';
@@ -149,8 +150,22 @@ class AuthPart extends ConsumerWidget {
               initialCountryCode: notifier.initialCode,
               onChanged: notifier.setPhone,
               onCountryChanged: notifier.setCountry,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 hintText: 'Enter your phone number',
+                suffixIcon: notifier.country == null
+                    ? null
+                    : AnimatedWidgetShower(
+                        size: 28.0,
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 0, 0, 2),
+                          child: Center(
+                            child: Text(
+                              notifier.country?.currencySymbol ?? '',
+                              style: context.text.titleMedium,
+                            ),
+                          ),
+                        ),
+                      ),
               ),
               keyboardType: TextInputType.phone,
               textInputAction: TextInputAction.next,

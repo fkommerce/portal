@@ -4,13 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl_phone_field/countries.dart';
 import 'package:intl_phone_field/phone_number.dart';
-import '../../../shared/ksnackbar/ksnackbar.dart';
-import '../../../utils/extensions/extensions.dart';
 
+import '../../../shared/ksnackbar/ksnackbar.dart';
 import '../../../shared/show_toast/awsome_snackbar/awesome_snackbar.dart';
 import '../../../shared/show_toast/awsome_snackbar/show_awesome_snackbar.dart';
+import '../../../utils/extensions/extensions.dart';
 import '../../../utils/logger/logger_helper.dart';
-import '../../settings/provider/currency.provider.dart';
 
 typedef RegisterNotifier
     = AutoDisposeAsyncNotifierProvider<RegisterProvider, void>;
@@ -90,20 +89,6 @@ class RegisterProvider extends AutoDisposeAsyncNotifier<void> {
     ref.notifyListeners();
     try {
       //
-      final currencies = ref.read(currencyProvider.notifier).currencies;
-      final currency = currencies.any((e) =>
-              e.name == country?.name || e.name.contains(country?.name ?? ''))
-          ? currencies.firstWhere((e) =>
-              e.name == country?.name || e.name.contains(country?.name ?? ''))
-          : null;
-      if (currency == null) {
-        isInProcess = false;
-        ref.notifyListeners();
-        if (!context.mounted) return;
-        KSnackbar.showSnackBar(context, 'Currency not found');
-        return;
-      }
-      //
       log.i('Store Name: ${storeNameCntrlr.text.trim()}');
       log.i('Owner Name: ${ownerNameCntrlr.text.trim()}');
       log.i('Email: ${emailCntrlr.text.trim()}');
@@ -112,9 +97,9 @@ class RegisterProvider extends AutoDisposeAsyncNotifier<void> {
       log.i('Country: ${country?.name}');
       log.i('Dialing Code: ${country?.dialCode}');
       log.i('Phone Number Length: ${country?.maxLength}');
-      log.i('Currency Name: ${currency.shortForm}');
-      log.i('Currency Symbol: ${currency.symbol}');
-
+      log.i('Currency Name: ${country?.currencyName}');
+      log.i('Currency Symbol: ${country?.currencySymbol}');
+      //
       await Future.delayed(const Duration(seconds: 5));
       //
       isInProcess = false;
