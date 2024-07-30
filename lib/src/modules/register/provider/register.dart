@@ -100,6 +100,7 @@ class RegisterProvider extends AutoDisposeAsyncNotifier<void> {
       log.i('Phone Number: ${phoneNumber?.number}');
       log.i('Password: ${pwdCntrlr.text.trim()}');
       log.i('Country: ${country?.name}');
+      log.i('Country Code: ${country?.code}');
       log.i('Dialing Code: ${country?.dialCode}');
       log.i('Phone Number Length: ${country?.maxLength}');
       log.i('Currency Name: ${country?.currencyName}');

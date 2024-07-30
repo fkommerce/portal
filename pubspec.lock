@@ -635,7 +635,7 @@ packages:
     description:
       path: "."
       ref: master
-      resolved-ref: "5ee043a2d8f4abd2602268644f3e1f568dd5b8da"
+      resolved-ref: "314c428d5ad700457446b37827b0d3e8adc5f6dd"
       url: "https://github.com/sabikrahat/intl_phone_field.git"
     source: git
     version: "4.0.0"

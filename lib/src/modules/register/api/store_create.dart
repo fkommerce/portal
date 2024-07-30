@@ -23,9 +23,10 @@ Future<bool> createStoreApi(
     'phone': notifier.phoneNumber?.number,
     'password': notifier.pwdCntrlr.text.trim(),
     'country': notifier.country?.name,
+    'countryCode': notifier.country?.code,
     'currency': notifier.country?.currencyName,
     'currencySymbol': notifier.country?.currencySymbol,
-    'dialingCode': notifier.country?.dialCode,
+    'dialingCode': notifier.country?.dialCodeWithPlus,
     'phoneNumberLength': notifier.country?.maxLength,
     'fcmToken': getRandomString(20),
   });
@@ -38,10 +39,8 @@ Future<bool> createStoreApi(
   if (apiResponse.success) {
     appSettings.storeId = apiResponse.data['store']['id'];
     appSettings.managementId = apiResponse.data['management']['data']['id'];
-    appSettings.accessToken =
-        apiResponse.data['management']['tokens']['access-token'];
-    appSettings.refreshToken =
-        apiResponse.data['management']['tokens']['refresh-token'];
+    appSettings.accessToken = apiResponse.data['management']['tokens']['access-token'];
+    appSettings.refreshToken = apiResponse.data['management']['tokens']['refresh-token'];
     await appSettings.saveData();
     if (!context.mounted) return true;
     KSnackbar.showSnackBar(context, apiResponse.message);

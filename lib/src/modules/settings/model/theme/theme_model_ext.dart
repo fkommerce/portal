@@ -4,7 +4,7 @@ extension ThemeProfileExtension on ThemeProfile {
   String get label {
     switch (this) {
       case ThemeProfile.system:
-        return 'System';
+        return 'Auto';
       case ThemeProfile.light:
         return 'Light';
       case ThemeProfile.dark:
