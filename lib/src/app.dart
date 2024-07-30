@@ -14,6 +14,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart'
     show AppLocalizations;
 import 'package:flutter_riverpod/flutter_riverpod.dart'
     show ConsumerWidget, WidgetRef;
+import 'package:portal/src/frogbase/frogbase.dart';
 import 'package:portal/src/modules/home/home.dart';
 
 import '../beamer.routes.dart';
@@ -52,6 +53,7 @@ class App extends ConsumerWidget {
         supportedLocales: AppLocalizations.supportedLocales,
         showPerformanceOverlay: ref.watch(performanceOverlayProvider),
         builder: EasyLoading.init(builder: (ctx, child) {
+          globalBeamDelegate = Beamer.of(ctx);
           t = AppLocalizations.of(ctx)!;
           topBarSize = ctx.padding.top;
           bottomViewPadding = ctx.padding.bottom;

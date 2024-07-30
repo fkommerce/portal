@@ -1,10 +1,12 @@
 import 'dart:convert' show json;
 
+import 'package:flutter/foundation.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/intl.dart';
 
 import '../../../config/constants.dart';
 import '../../../db/hive.dart';
+import '../../../frogbase/utils/helpers.dart';
 import '../../../utils/extensions/extensions.dart';
 import '../provider/date_format_provider.dart';
 import '../provider/time_format_provider.dart';
@@ -36,13 +38,9 @@ class AppSettings extends HiveObject {
   @HiveField(7)
   LocaleProfile locale = LocaleProfile.english;
   @HiveField(8)
-  String? storeId;
+  bool useSecureProtocol = kReleaseMode;
   @HiveField(9)
-  String? managementId;
-  @HiveField(10)
-  String? accessToken;
-  @HiveField(11)
-  String? refreshToken;
+  String baseUrl = kReleaseMode ? globalBaseUrl : localBaseUrl;
 
   String toRawJson() => json.encode(toJson());
 
@@ -55,10 +53,8 @@ class AppSettings extends HiveObject {
         'locale': locale.name,
         'firstRun': firstRun,
         'theme': theme.label,
-        'storeId': storeId,
-        'managementId': managementId,
-        'refreshToken': refreshToken,
-        'accessToken': accessToken,
+        'useSecureProtocol': useSecureProtocol,
+        'baseUrl': baseUrl,
       };
 
   factory AppSettings.fromJson(String source) =>
@@ -77,10 +73,8 @@ class AppSettings extends HiveObject {
     ..timeFormat = json['timeFormat'] as String
     ..fontFamily = json['fontFamily'] as String
     ..firstRun = json['firstRun'] as bool
-    ..storeId = json['storeId'] as String?
-    ..managementId = json['managementId'] as String?
-    ..refreshToken = json['refreshToken'] as String?
-    ..accessToken = json['accessToken'] as String?;
+    ..useSecureProtocol = json['useSecureProtocol'] as bool
+    ..baseUrl = json['baseUrl'] as String;
 
   @override
   String toString() => toRawJson();

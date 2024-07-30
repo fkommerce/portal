@@ -2,10 +2,9 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../../db/init.dart';
-import '../../settings/model/settings_model.dart';
-import '../../../shared/ksnackbar/ksnackbar.dart';
+import '../../../frogbase/utils/helpers.dart';
 
+import '../../../shared/ksnackbar/ksnackbar.dart';
 import '../../../utils/extensions/extensions.dart';
 import '../../../utils/logger/logger_helper.dart';
 
@@ -53,13 +52,8 @@ class LoginProvider extends AutoDisposeNotifier<void> {
 
 Future<void> signoutFunction(BuildContext context) async {
   try {
-    appSettings.storeId = null;
-    appSettings.managementId = null;
-    appSettings.accessToken = null;
-    appSettings.refreshToken = null;
-    await appSettings.saveData();
-    log.i(
-        'Local Storage Store Id: ${appSettings.storeId}, Management Id: ${appSettings.managementId}, Access Token: ${appSettings.accessToken}, Refresh Token: ${appSettings.refreshToken}');
+    await fb.signout();
+    log.i('Local Storage Cleared: ${fb.authStore}');
     if (!context.mounted) return;
     context.beamUpdate();
   } catch (e) {

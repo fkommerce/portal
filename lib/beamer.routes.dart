@@ -6,13 +6,13 @@ import 'package:beamer/beamer.dart'
         BeamerDelegate,
         RoutesLocationBuilder;
 import 'package:flutter/widgets.dart' show ValueKey;
-import 'package:portal/src/db/init.dart';
 import 'package:portal/src/modules/home/home.dart';
 import 'package:portal/src/modules/register/view/register.dart';
 import 'package:portal/src/modules/settings/view/setting_view.dart';
 
 import 'app.routes.dart';
 import 'src/config/constants.dart';
+import 'src/frogbase/utils/helpers.dart';
 import 'src/modules/login/view/login.dart';
 import 'src/shared/page_not_found/page_not_found.dart';
 
@@ -62,12 +62,12 @@ final routerDelegate = BeamerDelegate(
   guards: [
     BeamGuard(
       pathPatterns: AppRoutes.allAuthRequiredRoutes,
-      check: (_, __) => appSettings.managementId != null,
+      check: (_, __) => fb.authStore?.isAccessTokenValid ?? false,
       beamToNamed: (_, __, ___) => AppRoutes.loginRoute,
     ),
     BeamGuard(
       pathPatterns: [AppRoutes.loginRoute, AppRoutes.registerRoute],
-      check: (_, __) => appSettings.managementId == null,
+      check: (_, __) => !(fb.authStore?.isAccessTokenValid ?? false),
       beamToNamed: (_, __, ___) => AppRoutes.homeRoute,
     ),
   ],

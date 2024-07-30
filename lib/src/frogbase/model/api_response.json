@@ -2,5 +2,8 @@
     "success": true,
     "statusCode": 200,
     "message": "success",
+    "page": 1,
+    "limit": 20,
+    "filter": null,
     "data": null
 }

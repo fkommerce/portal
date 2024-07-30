@@ -9,6 +9,8 @@ import 'src/app.dart' show App;
 import 'src/config/get_platform.dart';
 import 'src/db/init.dart';
 import 'src/db/paths.dart';
+import 'src/frogbase/frogbase.dart';
+import 'src/frogbase/utils/helpers.dart';
 
 void main() async {
   await _init();
@@ -24,6 +26,8 @@ Future<void> _init() async {
   await _initFastCachedImageConfig();
   configEasyLoading();
   await initAppDatum();
+  fb = Frogbase();
+  await fb.init();
   await Future.delayed(const Duration(seconds: 2));
   FlutterNativeSplash.remove();
 }

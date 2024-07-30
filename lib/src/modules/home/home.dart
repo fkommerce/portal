@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import '../../db/init.dart';
-import '../../utils/extensions/extensions.dart';
+import '../../frogbase/utils/helpers.dart';
 
 import '../../config/constants.dart';
 import '../../config/size.dart';
 import '../../shared/internet/view/internet.dart';
+import '../../utils/extensions/extensions.dart';
 import '../settings/view/basic/signout_tile.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -26,22 +26,22 @@ class HomeScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: defaultPadding),
                 Text(
-                  'Store ID: ${appSettings.storeId}',
+                  'Store ID: ${fb.authStore?.storeId}',
                   style: context.text.bodyMedium,
                 ),
                 const SizedBox(height: defaultPadding),
                 Text(
-                  'Management ID: ${appSettings.managementId}',
+                  'Management ID: ${fb.authStore?.managementId}',
                   style: context.text.bodyMedium,
                 ),
                 const SizedBox(height: defaultPadding),
                 Text(
-                  'Management Access Token: ${appSettings.accessToken}',
+                  'Management Access Token: ${fb.authStore?.accessToken}',
                   style: context.text.bodyMedium,
                 ),
                 const SizedBox(height: defaultPadding),
                 Text(
-                  'Management Refresh Token: ${appSettings.refreshToken}',
+                  'Management Refresh Token: ${fb.authStore?.refreshToken}',
                   style: context.text.bodyMedium,
                 ),
                 const SizedBox(height: defaultPadding),

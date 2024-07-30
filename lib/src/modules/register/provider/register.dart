@@ -106,7 +106,7 @@ class RegisterProvider extends AutoDisposeAsyncNotifier<void> {
       log.i('Currency Name: ${country?.currencyName}');
       log.i('Currency Symbol: ${country?.currencySymbol}');
       //
-      final res = await createStoreApi(context, this);
+      final res = await signupApi(context, this);
       if (!res) {
         isInProcess = false;
         ref.notifyListeners();

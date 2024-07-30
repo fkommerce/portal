@@ -25,16 +25,14 @@ class AppSettingsAdapter extends TypeAdapter<AppSettings> {
       ..fontFamily = fields[5] as String
       ..theme = fields[6] as ThemeProfile
       ..locale = fields[7] as LocaleProfile
-      ..storeId = fields[8] as String?
-      ..managementId = fields[9] as String?
-      ..accessToken = fields[10] as String?
-      ..refreshToken = fields[11] as String?;
+      ..useSecureProtocol = fields[8] as bool
+      ..baseUrl = fields[9] as String;
   }
 
   @override
   void write(BinaryWriter writer, AppSettings obj) {
     writer
-      ..writeByte(12)
+      ..writeByte(10)
       ..writeByte(0)
       ..write(obj.firstRun)
       ..writeByte(1)
@@ -52,13 +50,9 @@ class AppSettingsAdapter extends TypeAdapter<AppSettings> {
       ..writeByte(7)
       ..write(obj.locale)
       ..writeByte(8)
-      ..write(obj.storeId)
+      ..write(obj.useSecureProtocol)
       ..writeByte(9)
-      ..write(obj.managementId)
-      ..writeByte(10)
-      ..write(obj.accessToken)
-      ..writeByte(11)
-      ..write(obj.refreshToken);
+      ..write(obj.baseUrl);
   }
 
   @override
