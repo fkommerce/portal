@@ -7,20 +7,22 @@ class KSnackbar {
   static hideSnackBar(BuildContext context) =>
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
 
-  static showSnackBar(
+  static show(
     BuildContext context,
     String content, {
-    int second = 4,
-    Alignment? alignment,
+    int? second,
     TextStyle? contentTextStyle,
+    bool isError = false,
   }) {
     hideSnackBar(context);
+    second ??= (isError ? 5 : 3);
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: _Content(
           content: content,
           second: second,
           contentTextStyle: contentTextStyle,
+          isError: isError,
         ),
         behavior: SnackBarBehavior.floating,
         backgroundColor: Colors.transparent,
@@ -45,11 +47,17 @@ class _Content extends StatelessWidget {
 
     /// default TextStyle is none.
     this.contentTextStyle,
+
+    /// default is false.
+    /// if true, the snackbar will be red.
+    /// if false, the snackbar will be black.
+    this.isError = false,
   });
 
   final String content;
   final int second;
   final TextStyle? contentTextStyle;
+  final bool isError;
 
   @override
   Widget build(BuildContext context) {
@@ -62,6 +70,7 @@ class _Content extends StatelessWidget {
           child: Card(
             elevation: 5.0,
             shape: roundedRectangleBorder5,
+            color: isError ? Colors.red : context.theme.cardColor,
             child: Padding(
               padding:
                   const EdgeInsets.symmetric(vertical: 10.0, horizontal: 12.0),
@@ -85,17 +94,21 @@ class _Content extends StatelessWidget {
                               child: CircularProgressIndicator(
                                 strokeWidth: 2.5,
                                 value: value / (second * 1000),
-                                color: context.theme.primaryColor,
-                                backgroundColor: context.theme.cardColor,
+                                color: isError ? Colors.white : Colors.black,
+                                backgroundColor: Colors.transparent,
                               ),
                             ),
                             Center(
                               child: Text(
-                                  (second - (value / 1000)).toInt().toString(),
-                                  textScaler: const TextScaler.linear(0.85),
-                                  style: contentTextStyle ??
-                                      context.text.bodyLarge!.copyWith(
-                                          fontWeight: FontWeight.w600)),
+                                (second - (value / 1000)).toInt().toString(),
+                                textScaler: const TextScaler.linear(0.85),
+                                style: contentTextStyle ??
+                                    context.text.bodyLarge!.copyWith(
+                                      fontWeight: FontWeight.w600,
+                                      color:
+                                          isError ? Colors.white : Colors.black,
+                                    ),
+                              ),
                             ),
                           ],
                         );
@@ -107,8 +120,10 @@ class _Content extends StatelessWidget {
                     child: Text(
                       content,
                       style: contentTextStyle ??
-                          context.text.bodyMedium!
-                              .copyWith(fontWeight: FontWeight.w500),
+                          context.text.bodyMedium!.copyWith(
+                            fontWeight: FontWeight.w500,
+                            color: isError ? Colors.white : Colors.black,
+                          ),
                     ),
                   ),
                   const SizedBox(width: 12.0),
@@ -116,10 +131,10 @@ class _Content extends StatelessWidget {
                     borderRadius: borderRadius45,
                     onTap: () =>
                         ScaffoldMessenger.of(context).hideCurrentSnackBar(),
-                    child: const Icon(
+                    child: Icon(
                       Icons.close,
                       size: 20.0,
-                      color: Colors.red,
+                      color: isError ? Colors.white : Colors.black,
                     ),
                   ),
                 ],

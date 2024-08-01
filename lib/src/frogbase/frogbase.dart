@@ -1,8 +1,10 @@
 import 'dart:convert';
 
-import 'package:beamer/beamer.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
+import '../app.dart';
+import '../shared/ksnackbar/ksnackbar.dart';
 
 import '../config/constants.dart';
 import '../db/hive.dart';
@@ -14,8 +16,6 @@ import 'utils/helpers.dart';
 
 final authStoreStreamPd =
     StreamProvider((_) => Boxes.authStores.watch(key: appName.toCamelWord));
-
-late BeamerDelegate globalBeamDelegate;
 
 class Frogbase {
   late AuthStore? authStore;
@@ -55,7 +55,6 @@ class Frogbase {
       refreshToken: apiModel.data['management']['tokens']['refresh-token'],
       storeIds: [apiModel.data['store']['id']],
       selectedStoreId: apiModel.data['store']['id'],
-      // selectedBranchId: apiModel.data['branch']['id'],
     );
     await authStore!.saveData();
   }
@@ -101,11 +100,18 @@ class Frogbase {
 
   Future<String?> _refreshToken() async {
     if (authStore == null) return null;
+    debugPrint('Refresh token: ${authStore!.refreshToken}');
     if (!authStore!.isRefreshTokenValid) {
+      log.i('Both token expired.');
       await signout();
-      globalBeamDelegate.update();
+      globalBeamerKey.currentContext?.beamUpdate();
+      KSnackbar.show(
+        globalBeamerKey.currentContext!,
+        'Session expired. Please sign in again.',
+      );
       return null;
     }
+    log.i('Token refreshing...');
     final response = await apiRequest(
       'POST',
       'auth-management/regenerate-tokens',
@@ -116,7 +122,7 @@ class Frogbase {
     if (!apiModel.success) throw apiModel.message;
     authStore!.accessToken = apiModel.data['access-token'];
     authStore!.refreshToken = apiModel.data['refresh-token'];
-    log.i('New access tokens: ${apiModel.data}');
+    log.i('New tokens: ${apiModel.data}');
     await authStore!.save();
     return authStore!.accessToken;
   }
@@ -127,9 +133,12 @@ class Frogbase {
     Map<String, dynamic>? data,
     bool isAuthRequired = true,
   }) async {
-    final token = await _token;
-    if (isAuthRequired && token == null) {
-      throw 'Session expired. Please sign in again.';
+    String? token;
+    if (isAuthRequired) {
+      token = await _token;
+      if (token == null) {
+        throw 'Session expired. Please sign in again.';
+      }
     }
     final headers = {
       'Content-Type': 'application/json',

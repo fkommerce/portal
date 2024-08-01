@@ -21,7 +21,7 @@ class KLoading extends StatelessWidget {
     return Center(
       child: ConstrainedBox(
         constraints: const BoxConstraints.tightFor(width: 100.0, height: 100.0),
-        child:  SpinKitThreeBounce(
+        child: SpinKitThreeBounce(
           color: context.theme.primaryColor,
           size: 30.0,
         ),
@@ -43,7 +43,7 @@ class KError extends StatelessWidget {
         mainAxisSize: mainMin,
         children: [
           const Icon(
-            Icons.error,
+            Icons.error_outline,
             size: 20.0,
             color: Colors.red,
           ),

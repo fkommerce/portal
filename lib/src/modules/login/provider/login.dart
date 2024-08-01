@@ -2,13 +2,13 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../../../main.dart';
-import '../api/login.dart';
-import '../../../frogbase/utils/helpers.dart';
 
+import '../../../../main.dart';
+import '../../../frogbase/utils/helpers.dart';
 import '../../../shared/ksnackbar/ksnackbar.dart';
 import '../../../utils/extensions/extensions.dart';
 import '../../../utils/logger/logger_helper.dart';
+import '../api/login.dart';
 
 typedef LoginNotifier = AutoDisposeNotifierProvider<LoginProvider, void>;
 
@@ -75,6 +75,6 @@ Future<void> signoutFunction(BuildContext context) async {
   } catch (e) {
     debugPrint('Error: $e');
     if (!context.mounted) return;
-    KSnackbar.showSnackBar(context, e.toString());
+    KSnackbar.show(context, e.toString());
   }
 }

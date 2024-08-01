@@ -87,15 +87,15 @@ class RegisterProvider extends AutoDisposeAsyncNotifier<void> {
   Future<void> submit(BuildContext context) async {
     if (!formKey.currentState!.validate()) return;
     if (country?.dialCode == null) {
-      KSnackbar.showSnackBar(context, 'Country Code is required');
+      KSnackbar.show(context, 'Country Code is required');
       return;
     }
     if (country?.currencyName == null || country?.currencySymbol == null) {
-      KSnackbar.showSnackBar(context, 'Currency not found of the country.');
+      KSnackbar.show(context, 'Currency not found of the country.');
       return;
     }
     if (phoneNumber == null || (phoneNumber?.number.isNullOrEmpty ?? true)) {
-      KSnackbar.showSnackBar(context, 'Phone number is required');
+      KSnackbar.show(context, 'Phone number is required');
       return;
     }
     isInProcess = true;

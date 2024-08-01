@@ -1,20 +1,11 @@
 import 'package:beamer/beamer.dart';
-import 'package:flutter/material.dart'
-    show
-        BuildContext,
-        Key,
-        MaterialApp,
-        MediaQuery,
-        TextScaler,
-        ThemeData,
-        Widget;
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart'
     show AppLocalizations;
 import 'package:flutter_riverpod/flutter_riverpod.dart'
     show ConsumerWidget, WidgetRef;
-import 'package:portal/src/frogbase/frogbase.dart';
 import 'package:portal/src/modules/home/home.dart';
 
 import '../beamer.routes.dart';
@@ -33,12 +24,15 @@ import 'utils/logger/logger_helper.dart';
 import 'utils/themes/dark/dark.theme.dart';
 import 'utils/themes/light/light.theme.dart';
 
+final GlobalKey globalBeamerKey = GlobalKey();
+
 class App extends ConsumerWidget {
   const App({super.key = const Key(appName)});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return BeamerProvider(
+      key: globalBeamerKey,
       routerDelegate: routerDelegate,
       child: MaterialApp.router(
         title: appName,
@@ -53,7 +47,6 @@ class App extends ConsumerWidget {
         supportedLocales: AppLocalizations.supportedLocales,
         showPerformanceOverlay: ref.watch(performanceOverlayProvider),
         builder: EasyLoading.init(builder: (ctx, child) {
-          globalBeamDelegate = Beamer.of(ctx);
           t = AppLocalizations.of(ctx)!;
           topBarSize = ctx.padding.top;
           bottomViewPadding = ctx.padding.bottom;

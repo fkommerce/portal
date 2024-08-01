@@ -29,12 +29,12 @@ Future<bool> storeCreateApi(
     });
     //
     if (!context.mounted) return true;
-    KSnackbar.showSnackBar(context, 'Store created successfully.');
+    KSnackbar.show(context, 'Store created successfully.');
     return true;
   } catch (e) {
     log.e('Store Creation: $e');
     if (!context.mounted) return false;
-    KSnackbar.showSnackBar(context, e.toString());
+    KSnackbar.show(context, e.toString(), isError: true);
     return false;
   }
 }

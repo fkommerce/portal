@@ -20,7 +20,7 @@ Future<bool> loginApi(
   } catch (e) {
     log.e('Management Login: $e');
     if (!context.mounted) return false;
-    KSnackbar.showSnackBar(context, e.toString());
+    KSnackbar.show(context, e.toString(), isError: true);
     return false;
   }
 }
