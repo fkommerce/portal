@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl_phone_field/countries.dart';
 import 'package:intl_phone_field/phone_number.dart';
 
+import '../../../../main.dart';
 import '../../../shared/ksnackbar/ksnackbar.dart';
 import '../../../shared/show_toast/awsome_snackbar/awesome_snackbar.dart';
 import '../../../shared/show_toast/awsome_snackbar/show_awesome_snackbar.dart';
@@ -42,6 +43,13 @@ class RegisterProvider extends AutoDisposeAsyncNotifier<void> {
     // initialCode = WidgetsBinding.instance.platformDispatcher.locale.countryCode;
     initialCode = 'BD';
     country = countries.firstWhere((c) => c.code == initialCode);
+    if (!isProduction) {
+      storeNameCntrlr.text = 'Fkommerce';
+      ownerNameCntrlr.text = 'Md. Sabik Alam Rahat';
+      emailCntrlr.text = 'fkommerce@algoramming.com';
+      pwdCntrlr.text = '@Rahat123';
+      pwdConfirmCntrlr.text = '@Rahat123';
+    }
   }
 
   void setPhone(PhoneNumber? pn) {

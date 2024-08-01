@@ -1,10 +1,10 @@
 import 'dart:convert' show base64, base64Decode, json, jsonDecode, utf8;
 
-import '../../db/hive.dart';
-import '../../utils/extensions/extensions.dart';
 import 'package:hive/hive.dart';
 
 import '../../config/constants.dart';
+import '../../db/hive.dart';
+import '../../utils/extensions/extensions.dart';
 
 part 'auth.store.ext.dart';
 part 'auth.store.g.dart';

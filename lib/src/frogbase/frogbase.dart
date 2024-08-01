@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:beamer/beamer.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
 
 import '../config/constants.dart';
@@ -10,6 +11,9 @@ import '../utils/logger/logger_helper.dart';
 import 'model/api_response.dart';
 import 'model/auth.store.dart';
 import 'utils/helpers.dart';
+
+final authStoreStreamPd =
+    StreamProvider((_) => Boxes.authStores.watch(key: appName.toCamelWord));
 
 late BeamerDelegate globalBeamDelegate;
 

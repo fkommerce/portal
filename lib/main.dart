@@ -12,6 +12,8 @@ import 'src/db/paths.dart';
 import 'src/frogbase/frogbase.dart';
 import 'src/frogbase/utils/helpers.dart';
 
+const isProduction = false;
+
 void main() async {
   await _init();
   runApp(const ProviderScope(child: App()));

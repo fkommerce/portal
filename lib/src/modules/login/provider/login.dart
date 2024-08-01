@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../../main.dart';
 import '../api/login.dart';
 import '../../../frogbase/utils/helpers.dart';
 
@@ -22,7 +23,12 @@ class LoginProvider extends AutoDisposeNotifier<void> {
   bool isInProcess = false;
 
   @override
-  void build() async {}
+  void build() async {
+    if (!isProduction) {
+      emailCntrlr.text = 'fkommerce@algoramming.com';
+      pwdCntrlr.text = '@Rahat123';
+    }
+  }
 
   void togglePwdObscure() {
     pwdObscure = !pwdObscure;
