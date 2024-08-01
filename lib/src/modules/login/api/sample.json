@@ -1,0 +1,29 @@
+{
+    "success": true,
+    "statusCode": 200,
+    "message": "User credentials are correct!",
+    "data": {
+        "management": {
+            "data": {
+                "id": "2cc16d30-838d-45fc-bb55-8070a6676d06",
+                "email": "fkommerce@algoramming.com",
+                "is_email_verified": false,
+                "phone": "+8801647629698",
+                "is_phone_verified": false,
+                "password": "$2b$10$lEQaq0WiYCaPWtAzMU60CunO4N1jR9NqBdHLer.0GXhIEOtKH5Zvq",
+                "name": "Md. Sabik Alam Rahat",
+                "avatar": null,
+                "fcm_token": "BMJduVOLEahQLODbiRNT",
+                "created": "2024-08-01T10:10:28.703Z",
+                "updated": "2024-08-01T10:10:28.703Z"
+            },
+            "tokens": {
+                "access-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJjYzE2ZDMwLTgzOGQtNDVmYy1iYjU1LTgwNzBhNjY3NmQwNiIsImlhdCI6MTcyMjUwNzczNCwiZXhwIjoxNzIyNTA4MzM0fQ.VkG1FSz8fdRuAaNtTxyNF2YsmvEsNd8tu4xkipxy6ss",
+                "refresh-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJjYzE2ZDMwLTgzOGQtNDVmYy1iYjU1LTgwNzBhNjY3NmQwNiIsImlhdCI6MTcyMjUwNzczNCwiZXhwIjoxNzIyNTA5NTM0fQ.lkZb5cZBw7ArcjbgTWL7p71tpOLkqc9RVPRrDmpetDg"
+            }
+        },
+        "store-ids": [
+            "170a5786-afb4-4931-9ae5-0a001ac88b93"
+        ]
+    }
+}

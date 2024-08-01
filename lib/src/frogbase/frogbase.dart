@@ -1,15 +1,15 @@
 import 'dart:convert';
 
 import 'package:beamer/beamer.dart';
-import 'model/api_response.dart';
-import 'model/auth.store.dart';
-import 'utils/helpers.dart';
-import '../utils/extensions/extensions.dart';
 import 'package:http/http.dart' as http;
 
 import '../config/constants.dart';
 import '../db/hive.dart';
+import '../utils/extensions/extensions.dart';
 import '../utils/logger/logger_helper.dart';
+import 'model/api_response.dart';
+import 'model/auth.store.dart';
+import 'utils/helpers.dart';
 
 late BeamerDelegate globalBeamDelegate;
 
@@ -46,10 +46,12 @@ class Frogbase {
     final apiModel = ApiResponse.fromRawJson(response);
     if (!apiModel.success) throw apiModel.message;
     authStore = AuthStore(
-      storeId: apiModel.data['store']['id'],
       managementId: apiModel.data['management']['data']['id'],
       accessToken: apiModel.data['management']['tokens']['access-token'],
       refreshToken: apiModel.data['management']['tokens']['refresh-token'],
+      storeIds: [apiModel.data['store']['id']],
+      selectedStoreId: apiModel.data['store']['id'],
+      // selectedBranchId: apiModel.data['branch']['id'],
     );
     await authStore!.saveData();
   }
@@ -57,7 +59,7 @@ class Frogbase {
   Future<void> signin(String email, String password) async {
     final response = await apiRequest(
       'POST',
-      'management/signin',
+      'auth-management/signin',
       data: {
         'email': email,
         'password': password,
@@ -67,10 +69,13 @@ class Frogbase {
     final apiModel = ApiResponse.fromRawJson(response);
     if (!apiModel.success) throw apiModel.message;
     authStore = AuthStore(
-      storeId: apiModel.data['store']['id'],
       managementId: apiModel.data['management']['data']['id'],
       accessToken: apiModel.data['management']['tokens']['access-token'],
       refreshToken: apiModel.data['management']['tokens']['refresh-token'],
+      storeIds: apiModel.data['store-ids'] == null
+          ? []
+          : List<String>.from(apiModel.data['store-ids']!.map((x) => x)),
+      selectedStoreId: apiModel.data['store-ids'][0],
     );
     await authStore!.saveData();
   }
@@ -99,7 +104,7 @@ class Frogbase {
     }
     final response = await apiRequest(
       'POST',
-      'management/regenerate-tokens',
+      'auth-management/regenerate-tokens',
       data: {'refresh-token': authStore!.refreshToken},
       isAuthRequired: false,
     );
@@ -119,7 +124,9 @@ class Frogbase {
     bool isAuthRequired = true,
   }) async {
     final token = await _token;
-    if (isAuthRequired && token == null) throw 'Session expired. Please sign in again.';
+    if (isAuthRequired && token == null) {
+      throw 'Session expired. Please sign in again.';
+    }
     final headers = {
       'Content-Type': 'application/json',
       if (isAuthRequired) 'Authorization': 'Bearer $token',

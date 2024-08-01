@@ -17,25 +17,31 @@ class AuthStoreAdapter extends TypeAdapter<AuthStore> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return AuthStore(
-      storeId: fields[0] as String,
-      managementId: fields[1] as String,
-      accessToken: fields[2] as String,
-      refreshToken: fields[3] as String,
+      managementId: fields[0] as String,
+      accessToken: fields[1] as String,
+      refreshToken: fields[2] as String,
+      storeIds: (fields[3] as List).cast<String>(),
+      selectedStoreId: fields[4] as String,
+      selectedBranchId: fields[5] as String?,
     );
   }
 
   @override
   void write(BinaryWriter writer, AuthStore obj) {
     writer
-      ..writeByte(4)
+      ..writeByte(6)
       ..writeByte(0)
-      ..write(obj.storeId)
-      ..writeByte(1)
       ..write(obj.managementId)
-      ..writeByte(2)
+      ..writeByte(1)
       ..write(obj.accessToken)
+      ..writeByte(2)
+      ..write(obj.refreshToken)
       ..writeByte(3)
-      ..write(obj.refreshToken);
+      ..write(obj.storeIds)
+      ..writeByte(4)
+      ..write(obj.selectedStoreId)
+      ..writeByte(5)
+      ..write(obj.selectedBranchId);
   }
 
   @override

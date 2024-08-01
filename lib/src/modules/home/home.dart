@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import '../../frogbase/utils/helpers.dart';
 
 import '../../config/constants.dart';
 import '../../config/size.dart';
+import '../../frogbase/utils/helpers.dart';
 import '../../shared/internet/view/internet.dart';
 import '../../utils/extensions/extensions.dart';
 import '../settings/view/basic/signout_tile.dart';
@@ -26,11 +26,6 @@ class HomeScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: defaultPadding),
                 Text(
-                  'Store ID: ${fb.authStore?.storeId}',
-                  style: context.text.bodyMedium,
-                ),
-                const SizedBox(height: defaultPadding),
-                Text(
                   'Management ID: ${fb.authStore?.managementId}',
                   style: context.text.bodyMedium,
                 ),
@@ -42,6 +37,21 @@ class HomeScreen extends StatelessWidget {
                 const SizedBox(height: defaultPadding),
                 Text(
                   'Management Refresh Token: ${fb.authStore?.refreshToken}',
+                  style: context.text.bodyMedium,
+                ),
+                const SizedBox(height: defaultPadding),
+                Text(
+                  'Store IDs: ${fb.authStore?.storeIds}',
+                  style: context.text.bodyMedium,
+                ),
+                const SizedBox(height: defaultPadding),
+                Text(
+                  'Selected Store ID: ${fb.authStore?.selectedStoreId}',
+                  style: context.text.bodyMedium,
+                ),
+                const SizedBox(height: defaultPadding),
+                Text(
+                  'Selected Branch ID: ${fb.authStore?.selectedBranchId}',
                   style: context.text.bodyMedium,
                 ),
                 const SizedBox(height: defaultPadding),

@@ -12,26 +12,34 @@ part 'auth.store.g.dart';
 @HiveType(typeId: HiveTypes.authStore)
 class AuthStore extends HiveObject {
   @HiveField(0)
-  String storeId;
-  @HiveField(1)
   String managementId;
-  @HiveField(2)
+  @HiveField(1)
   String accessToken;
-  @HiveField(3)
+  @HiveField(2)
   String refreshToken;
+  @HiveField(3)
+  List<String> storeIds;
+  @HiveField(4)
+  String selectedStoreId;
+  @HiveField(5)
+  String? selectedBranchId;
 
   AuthStore({
-    required this.storeId,
     required this.managementId,
     required this.accessToken,
     required this.refreshToken,
+    required this.storeIds,
+    required this.selectedStoreId,
+    this.selectedBranchId,
   });
 
   factory AuthStore.fromJson(Map<String, dynamic> json) => AuthStore(
-        storeId: json[_Json.storeId] as String,
         managementId: json[_Json.managementId] as String,
         accessToken: json[_Json.accessToken] as String,
         refreshToken: json[_Json.refreshToken] as String,
+        storeIds: (json[_Json.storeIds] as List).map((e) => e as String).toList(),
+        selectedStoreId: json[_Json.selectedStoreId] as String,
+        selectedBranchId: json[_Json.selectedBranchId] as String?,
       );
 
   factory AuthStore.fromRawJson(String source) =>
@@ -39,17 +47,19 @@ class AuthStore extends HiveObject {
 
   // to json
   Map<String, dynamic> toJson() => {
-        _Json.storeId: storeId,
         _Json.managementId: managementId,
         _Json.accessToken: accessToken,
         _Json.refreshToken: refreshToken,
+        _Json.storeIds: storeIds,
+        _Json.selectedStoreId: selectedStoreId,
+        _Json.selectedBranchId: selectedBranchId,
       };
 
   String toRawJson() => json.encode(toJson());
 
   @override
   String toString() =>
-      'AuthStore(storeId: $storeId, managementId: $managementId, accessToken: $accessToken, refreshToken: $refreshToken)';
+      'AuthStore(managementId: $managementId, accessToken: $accessToken, refreshToken: $refreshToken, storeIds: $storeIds, selectedStoreId: $selectedStoreId, selectedBranchId: $selectedBranchId)';
 
   bool get isAccessTokenValid => _isValid(accessToken);
   bool get isRefreshTokenValid => _isValid(refreshToken);
@@ -71,8 +81,10 @@ class AuthStore extends HiveObject {
 }
 
 class _Json {
-  static const storeId = 'store_id';
   static const managementId = 'management_id';
   static const accessToken = 'access_token';
   static const refreshToken = 'refresh_token';
+  static const storeIds = 'store_ids';
+  static const selectedStoreId = 'selected_store_id';
+  static const selectedBranchId = 'selected_branch_id';
 }

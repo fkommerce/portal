@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl_phone_field/countries.dart';
 import 'package:intl_phone_field/phone_number.dart';
-import '../api/store_create.dart';
 
 import '../../../shared/ksnackbar/ksnackbar.dart';
 import '../../../shared/show_toast/awsome_snackbar/awesome_snackbar.dart';
 import '../../../shared/show_toast/awsome_snackbar/show_awesome_snackbar.dart';
 import '../../../utils/extensions/extensions.dart';
 import '../../../utils/logger/logger_helper.dart';
+import '../api/store_create.dart';
 
 typedef RegisterNotifier
     = AutoDisposeAsyncNotifierProvider<RegisterProvider, void>;
@@ -106,7 +106,7 @@ class RegisterProvider extends AutoDisposeAsyncNotifier<void> {
       log.i('Currency Name: ${country?.currencyName}');
       log.i('Currency Symbol: ${country?.currencySymbol}');
       //
-      final res = await signupApi(context, this);
+      final res = await storeCreateApi(context, this);
       if (!res) {
         isInProcess = false;
         ref.notifyListeners();

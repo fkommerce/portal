@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../../utils/extensions/extensions.dart';
 
 import '../../../frogbase/utils/helpers.dart';
 import '../../../shared/generated_string/generated_string.dart';
@@ -7,7 +6,7 @@ import '../../../shared/ksnackbar/ksnackbar.dart';
 import '../../../utils/logger/logger_helper.dart';
 import '../provider/register.dart';
 
-Future<bool> signupApi(
+Future<bool> storeCreateApi(
   BuildContext context,
   RegisterProvider notifier,
 ) async {
@@ -17,7 +16,8 @@ Future<bool> signupApi(
       'name': notifier.storeNameCntrlr.text,
       'ownerName': notifier.ownerNameCntrlr.text,
       'email': notifier.emailCntrlr.text.trim(),
-      'phone': notifier.phoneNumber?.number,
+      'phone':
+          '${notifier.country?.dialCodeWithPlus}${notifier.phoneNumber?.number}',
       'password': notifier.pwdCntrlr.text.trim(),
       'country': notifier.country?.name,
       'countryCode': notifier.country?.code,
@@ -28,10 +28,8 @@ Future<bool> signupApi(
       'fcmToken': getRandomString(20),
     });
     //
-    notifier.clear();
     if (!context.mounted) return true;
     KSnackbar.showSnackBar(context, 'Store created successfully.');
-    context.beamUpdate();
     return true;
   } catch (e) {
     log.e('Store Creation: $e');

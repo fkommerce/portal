@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../api/login.dart';
 import '../../../frogbase/utils/helpers.dart';
 
 import '../../../shared/ksnackbar/ksnackbar.dart';
@@ -44,9 +45,18 @@ class LoginProvider extends AutoDisposeNotifier<void> {
     log.i('Email: ${emailCntrlr.text.trim()}');
     log.i('Password: ${pwdCntrlr.text.trim()}');
     //
-    await Future.delayed(const Duration(seconds: 5));
+    final res = await loginApi(context, this);
+    if (!res) {
+      isInProcess = false;
+      ref.notifyListeners();
+      return;
+    }
+    //
     isInProcess = false;
     ref.notifyListeners();
+    if (!context.mounted) return;
+    context.beamUpdate();
+    clear();
   }
 }
 
