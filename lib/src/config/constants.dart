@@ -1,4 +1,11 @@
-import 'package:flutter/material.dart' show BorderRadius, CrossAxisAlignment, ElevatedButton, MainAxisAlignment, MainAxisSize, RoundedRectangleBorder;
+import 'package:flutter/material.dart'
+    show
+        BorderRadius,
+        CrossAxisAlignment,
+        ElevatedButton,
+        MainAxisAlignment,
+        MainAxisSize,
+        RoundedRectangleBorder;
 
 const appName = 'Fkommerce Portal';
 const googleMapKey = 'AIzaSyDiA1bfNAJHsRqoScWVf5BA_FlgT7k2wqM';
@@ -20,9 +27,11 @@ const mainMin = MainAxisSize.min;
 
 const defDuration = Duration(milliseconds: 350);
 
-Duration kAnimationDuration([double t = 2.5]) => Duration(milliseconds: (t * 1000).toInt());
+Duration kAnimationDuration([double t = 2.5]) =>
+    Duration(milliseconds: (t * 1000).toInt());
 
-final roundedButtonStyle = ElevatedButton.styleFrom(shape: RoundedRectangleBorder(borderRadius: borderRadius15));
+final roundedButtonStyle = ElevatedButton.styleFrom(
+    shape: RoundedRectangleBorder(borderRadius: borderRadius15));
 
 final borderRadius0 = BorderRadius.circular(0);
 final borderRadius3 = BorderRadius.circular(3);
@@ -36,14 +45,25 @@ final borderRadius45 = BorderRadius.circular(45);
 final borderRadius60 = BorderRadius.circular(60);
 final borderRadius100 = BorderRadius.circular(100);
 
-final roundedRectangleBorder0 = RoundedRectangleBorder(borderRadius: borderRadius0);
-final roundedRectangleBorder3 = RoundedRectangleBorder(borderRadius: borderRadius3);
-final roundedRectangleBorder5 = RoundedRectangleBorder(borderRadius: borderRadius5);
-final roundedRectangleBorder10 = RoundedRectangleBorder(borderRadius: borderRadius10);
-final roundedRectangleBorder12 = RoundedRectangleBorder(borderRadius: borderRadius12);
-final roundedRectangleBorder15 = RoundedRectangleBorder(borderRadius: borderRadius15);
-final roundedRectangleBorder25 = RoundedRectangleBorder(borderRadius: borderRadius25);
-final roundedRectangleBorder30 = RoundedRectangleBorder(borderRadius: borderRadius30);
-final roundedRectangleBorder45 = RoundedRectangleBorder(borderRadius: borderRadius45);
-final roundedRectangleBorder60 = RoundedRectangleBorder(borderRadius: borderRadius60);
-final roundedRectangleBorder100 = RoundedRectangleBorder(borderRadius: borderRadius100);
+final roundedRectangleBorder0 =
+    RoundedRectangleBorder(borderRadius: borderRadius0);
+final roundedRectangleBorder3 =
+    RoundedRectangleBorder(borderRadius: borderRadius3);
+final roundedRectangleBorder5 =
+    RoundedRectangleBorder(borderRadius: borderRadius5);
+final roundedRectangleBorder10 =
+    RoundedRectangleBorder(borderRadius: borderRadius10);
+final roundedRectangleBorder12 =
+    RoundedRectangleBorder(borderRadius: borderRadius12);
+final roundedRectangleBorder15 =
+    RoundedRectangleBorder(borderRadius: borderRadius15);
+final roundedRectangleBorder25 =
+    RoundedRectangleBorder(borderRadius: borderRadius25);
+final roundedRectangleBorder30 =
+    RoundedRectangleBorder(borderRadius: borderRadius30);
+final roundedRectangleBorder45 =
+    RoundedRectangleBorder(borderRadius: borderRadius45);
+final roundedRectangleBorder60 =
+    RoundedRectangleBorder(borderRadius: borderRadius60);
+final roundedRectangleBorder100 =
+    RoundedRectangleBorder(borderRadius: borderRadius100);

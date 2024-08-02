@@ -1,64 +1,51 @@
-import 'dart:async';
+// import 'dart:async';
 
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'branch.dart';
+// import 'package:flutter_riverpod/flutter_riverpod.dart';
+// import 'branch.dart';
 
-import '../../../frogbase/model/api_response.dart';
-import '../../../frogbase/utils/helpers.dart';
-import '../model/contributor.dart';
+// import '../../../frogbase/model/api_response.dart';
+// import '../../../frogbase/utils/helpers.dart';
+// import '../model/contributor.dart';
 
-typedef ContributorsNotifier
-    = AsyncNotifierProvider<ContributorsProvider, List<Contributor>>;
+// typedef ContributorNotifier
+//     = AsyncNotifierProvider<ContributorProvider, Contributor>;
 
-final contributorsProvider = ContributorsNotifier(ContributorsProvider.new);
+// final contributorProvider = ContributorNotifier(ContributorProvider.new);
 
-class ContributorsProvider extends AsyncNotifier<List<Contributor>> {
-  late List<Contributor> _contributors;
-  @override
-  FutureOr<List<Contributor>> build() async {
-    _contributors = [];
-    final body = await fb.apiRequest('GET',
-        'contributor/store/${fb.authStore?.selectedStoreId}/management/${fb.authStore?.managementId}');
-    final ApiResponse apiModel = ApiResponse.fromRawJson(body);
-    _contributors = Contributor.listFromJson(apiModel.data);
-    return _contributors;
-  }
+// class ContributorProvider extends AsyncNotifier<Contributor> {
+//   late List<Contributor> _contributors;
+//   late Contributor _selectedContributor;
+//   @override
+//   FutureOr<Contributor> build() async {
+//     _contributors = [];
+//     final body = await fb.apiRequest(
+//       'GET',
+//       'contributor/store/${fb.authStore?.selectedStoreId}/management/${fb.authStore?.managementId}',
+//     );
+//     final ApiResponse apiModel = ApiResponse.fromRawJson(body);
+//     _contributors = Contributor.listFromJson(apiModel.data);
+//     //
+//     final branch = await ref.watch(branchProvider.future);
+//     _selectedContributor =
+//         _contributors.firstWhere((e) => e.branch == branch.id);
+//     //
+//     return _selectedContributor;
+//   }
 
-  List<Contributor> get contributors => _contributors;
+//   List<Contributor> get contributors => _contributors;
 
-  Future<void> refresh() async {
-    final body = await fb.apiRequest('GET',
-        'contributor/store/${fb.authStore?.selectedStoreId}/management/${fb.authStore?.managementId}');
-    final ApiResponse apiModel = ApiResponse.fromRawJson(body);
-    _contributors = Contributor.listFromJson(apiModel.data);
-    ref.notifyListeners();
-  }
-}
+//   Contributor get selectedContributor => _selectedContributor;
 
-typedef SelectedContributorNotifier
-    = AsyncNotifierProvider<SelectedContributorProvider, Contributor>;
-
-final selectedContributorProvider =
-    SelectedContributorNotifier(SelectedContributorProvider.new);
-
-class SelectedContributorProvider extends AsyncNotifier<Contributor> {
-  late Contributor _contributor;
-  @override
-  FutureOr<Contributor> build() async {
-    final selectedBranch = await ref.watch(selectedBranchProvider.future);
-    final contributors = await ref.watch(contributorsProvider.future);
-    _contributor =
-        contributors.firstWhere((e) => e.branch == selectedBranch.id);
-    return _contributor;
-  }
-
-  Contributor get contributor => _contributor;
-
-  Future<void> selectContributor(String id) async {
-    final selectedBranch = await ref.watch(selectedBranchProvider.future);
-    final contributors = await ref.watch(contributorsProvider.future);
-    _contributor =
-        contributors.firstWhere((e) => e.branch == selectedBranch.id);
-    ref.notifyListeners();
-  }
-}
+//   Future<void> refresh() async {
+//     final body = await fb.apiRequest('GET',
+//         'contributor/store/${fb.authStore?.selectedStoreId}/management/${fb.authStore?.managementId}');
+//     final ApiResponse apiModel = ApiResponse.fromRawJson(body);
+//     _contributors = Contributor.listFromJson(apiModel.data);
+//     //
+//     final branch = await ref.watch(branchProvider.future);
+//     _selectedContributor =
+//         _contributors.firstWhere((e) => e.branch == branch.id);
+//     //
+//     ref.notifyListeners();
+//   }
+// }
